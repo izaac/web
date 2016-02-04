@@ -1,0 +1,144 @@
+<html>
+
+<head>
+    <title>
+        Izaac's Romans Converter
+    </title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> -->
+    <!--
+<script type="text/javascript">
+    var shiftWindow = function() { scrollBy(0, -50) };
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+</script>
+-->
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .section-beautify {
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            /*background: url('desk-work-office.jpg') no-repeat center center fixed;*/
+            background-size: cover;
+        }
+
+        .main-message {
+            margin-top: 75px;
+            text-shadow: 1px 1px #000;
+        }
+        .description{
+            font-size: 20px;
+        }
+
+        *[id]:before {
+            display: block;
+            content: " ";
+            margin-top: -75px;
+            height: 75px;
+            visibility: hidden;
+        }
+
+        .jumbotron {
+            height: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .h2 {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .section {
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<script type="text/javascript" language="javascript">
+
+function convertToRoman() {
+  var n = parseInt(document.getElementById("number").value);
+  console.log(n);
+  var roman = "";
+  var tmp = n;
+  var arrayNums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  var numerals = ["M","CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+
+  for(var i = 0; n > 0; i++){
+      tmp = n / arrayNums[i];
+      for(var j = 1; j <= tmp; j++){
+          roman += numerals[i];
+      }
+      n %= arrayNums[i];
+
+  }
+  console.log(roman);
+  document.getElementById("text_quote").innerHTML = roman;
+}
+
+</script>
+
+<div class="jumbotron">
+    <div class="section-beautify">
+        <h1 class="text-center main-message">Decimal to Roman</h1>
+
+        <hr>
+        <div class="row">
+            <ul class="list-inline">
+                <li>
+                  <input id="number" class="form-control" type="text">
+                </li>
+                <li>
+                    <a id="the_button" class="btn btn-default btn-lg" onclick="convertToRoman();"><i class="fa fa-refresh fa-spin"></i>Generate</a>
+                </li>
+
+            </ul>
+        <div>
+
+            <p>
+              <strong id="text_quote"></strong>
+            </p>
+            <br>
+            
+        </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="section-beautify">
+        <h2 id="contact" class="text-center main-message">Contact me</h2>
+        <div class="row">
+            <ul class="list-inline">
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://twitter.com/jizaac" target="_blank"><i class="fa fa-twitter"></i>Twitter</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://mx.linkedin.com/in/izaaczavaleta" target="_blank"><i class="fa fa-linkedin"></i>LinkedIn</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://github.com/izaac" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://www.freecodecamp.com/izaac" target="_blank"><i class="fa fa-code"></i>Free Code Camp</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</html>

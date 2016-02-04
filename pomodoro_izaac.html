@@ -1,0 +1,262 @@
+<html>
+
+<head>
+    <title>
+        Izaac's Pomodoro
+    </title>
+    <meta charset="utf-8"/>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .section-beautify {
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            /*background: url('desk-work-office.jpg') no-repeat center center fixed;*/
+            background-size: cover;
+        }
+
+        .main-message {
+            margin-top: 75px;
+            text-shadow: 1px 1px #000;
+        }
+        .description{
+            font-size: 20px;
+        }
+
+        .signs {
+            font-size: 40px;
+        }
+
+        *[id]:before {
+            display: block;
+            content: " ";
+            margin-top: -75px;
+            height: 75px;
+            visibility: hidden;
+        }
+
+        .jumbotron {
+            height: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .h2 {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .section {
+            height: 100%;
+            width: 100%;
+        }
+        .button-top {
+            margin-top:20px;
+        }
+
+    </style>
+</head>
+<script type="text/javascript" language="javascript">
+
+
+    var the_interval = null;
+    var minutes_elem = null;
+    var seconds_elem = null;
+    var minutes_orig = 25;
+    var seconds_orig = 0;
+
+
+    function populate_vars() {
+      minutes_elem = document.getElementById("mins");
+      seconds_elem = document.getElementById("seconds");
+      minutes_orig = parseInt(minutes_elem.innerHTML);
+      seconds_orig = parseInt(seconds_elem.innerHTML);
+      console.log("loaded!");
+      console.log(minutes_orig);
+    }
+
+    window.onload = populate_vars;
+
+    function reset(){
+
+      var hid_div = document.getElementById("hidden_div");
+      if(the_interval === null || hid_div.style.display === "none"){
+        console.log("time not started");
+        return;
+      }
+      clearInterval(the_interval);
+      var el = document.getElementById("mins");
+      minutes_elem.innerHTML = el.innerHTML;
+      seconds_elem.innerHTML = '00';
+    }
+
+    function countdown() {
+      var secs_init = 0;
+      minutes_elem = document.getElementById("minutes");
+      seconds_elem = document.getElementById("seconds");
+      seconds = parseInt(seconds_elem.innerHTML);
+      var hid_div = document.getElementById("hidden_div");
+
+
+      if(hid_div.style.display === "none"){
+        mins = document.getElementById("mins");
+        minutes = parseInt(mins.innerHTML);
+        hid_div.style.display = "block";
+      }
+      else{
+        console.log("Clock running!");
+        return;
+      }
+
+      the_interval = setInterval(function() {
+      if(seconds == 0) {
+        if(minutes == 0) {
+          seconds_elem.innerHTML = '00';
+          hid_div.style.display === "none"
+          clearInterval(the_interval);
+          return;
+        } else {
+          minutes--;
+          seconds = 59;
+        }
+      }
+
+      var minutes_text = '';
+
+      if(minutes > 0) {
+        if (minutes>9){
+          minutes_text = minutes;
+        }
+        else{
+          minutes_text = '0' + minutes;
+        }
+      } else {
+         minutes_text = '00';
+      }
+
+      var seconds_text = '';
+
+      if (seconds>9){
+       seconds_text = seconds;
+      }
+      else{
+       seconds_text = '0' + seconds;
+      }
+       minutes_elem.innerHTML = minutes_text;
+       seconds_elem.innerHTML = seconds_text;
+       seconds--;
+       console.log(seconds);
+
+      }, 1000);
+    }
+
+    function break_clock() {
+      var break_mins = parseInt(document.getElementById("breaks").innerHTML);
+      var break_secs = break_mins * 60;
+      clearInterval(the_interval);
+      var break_timeout = setTimeout(countdown, break_secs * 1000)
+    }
+
+    function mins_up() {
+      var time_mins = parseInt(minutes_elem.innerHTML);
+      if (time_mins < 59) time_mins++;
+      minutes_elem.innerHTML = time_mins;
+    }
+
+    function mins_down() {
+      var time_mins = parseInt(minutes_elem.innerHTML);
+      if (time_mins > 1 ) time_mins--;
+      minutes_elem.innerHTML = time_mins;
+    }
+
+    function brk_up() {
+      var brk_elem = document.getElementById("breaks")
+      var brk_mins = parseInt(brk_elem.innerHTML);
+      var time_mins = parseInt(minutes_elem.innerHTML);
+      if (brk_mins < 59) brk_mins++;
+      brk_elem.innerHTML = brk_mins;
+    }
+
+    function brk_down() {
+      var brk_elem = document.getElementById("breaks")
+      var brk_mins = parseInt(brk_elem.innerHTML);
+      if (brk_mins > 1) brk_mins--;
+
+      brk_elem.innerHTML = brk_mins;
+    }
+
+</script>
+
+<div class="jumbotron">
+    <div class="section-beautify">
+        <h1 class="text-center main-message">Pomodoro Clock</h1>
+
+        <hr>
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <h4>Time:</h4><span id="timeup"><i onclick="mins_up();" class="fa fa-plus fa-3 signs"></i></span>
+                <h5 id="mins" class="signs">25</h5><span id="timedown"><i onclick="mins_down();" class="fa fa-minus fa-3 signs"></i></span>
+            </div>
+
+            <div onclick="break_clock();"class="col-md-4 col-sm-4">
+                <div id="hidden_div" style="display:none;">
+                  <h5 id="timer" class="signs">
+                    <ul class="list-inline">
+                      <li id="minutes">00</li> :
+                      <li id="seconds">00</li>
+                    </ul>
+                  </h5>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <h4>Break:</h4><span id="breakup"><i onclick="brk_up();" class="fa fa-plus fa-3 signs"></i></span>
+                <h5 id="breaks" class="signs">5</h5><span id="breakdown"><i onclick="brk_down();" class="fa fa-minus fa-3 signs"></i></span>
+            </div>
+
+        </div>
+        <ul class="list-inline">
+          <li>
+            <a id="start-button" class="btn btn-default btn-lg" onclick="countdown();"><i class="fa fa-clock-o"></i> Start</a>
+          </li>
+          <li>
+            <a id="reset-button" class="btn btn-default btn-lg" onclick="reset();"><i class="fa fa-stop"></i> Reset</a>
+          </li>
+        </ul>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="section-beautify">
+        <h2 id="contact" class="text-center main-message">Contact me</h2>
+        <div class="row">
+            <ul class="list-inline">
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://twitter.com/jizaac" target="_blank"><i class="fa fa-twitter"></i>Twitter</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://mx.linkedin.com/in/izaaczavaleta" target="_blank"><i class="fa fa-linkedin"></i>LinkedIn</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://github.com/izaac" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://www.freecodecamp.com/izaac" target="_blank"><i class="fa fa-code"></i>Free Code Camp</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</html>

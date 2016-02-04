@@ -1,0 +1,194 @@
+<html>
+
+<head>
+    <title>
+        Izaac's Portfolio
+    </title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> -->
+    <!--
+<script type="text/javascript">
+    var shiftWindow = function() { scrollBy(0, -50) };
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+</script>
+-->
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+        
+        .section-beautify {
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            /*background: url('desk-work-office.jpg') no-repeat center center fixed;*/
+            background-size: cover;
+        }
+        
+        .main-message {
+            margin-top: 75px;
+            text-shadow: 1px 1px #000;
+        }
+        .description{
+            font-size: 20px;
+        }
+        
+        *[id]:before {
+            display: block;
+            content: " ";
+            margin-top: -75px;
+            height: 75px;
+            visibility: hidden;
+        }
+        
+        .jumbotron {
+            height: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        
+        .h2 {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        
+        .section {
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<script type="text/javascript" language="javascript">
+    
+    // http://www.telegraph.co.uk/film/what-to-watch/greatest-quotes/
+    var quotes = [
+        "All those moments will be lost in time... like tears in rain.|Blade Runner",
+        "Hasta la Vista, Baby|Terminator",
+        "Bond, James Bond|Dr. No",
+        "A boy's best friend is his mother| Psycho",
+        "Carpe diem. Seize the day, boys. Make your lives extraordinary|Dead Poets Society",
+        "Daddy! My Daddy!|The Railway Children",
+        "Did you think I'd be too stupid to know what a eugoogly is?|Zoolander",
+        "Do I look like I give a damn?|Casino Royale",
+        "Do I look like someone who cares what God thinks?|Hellraiser",
+        "ET phone home|ET the Extra-terrestrial",
+        "Enough is enough! I have had it with these motherf_____g snakes on this motherf_____g plane!|Snakes on a Plane",
+        "Ever since I can remember I always wanted to be a gangster. To me that was better than being president of the United States. To be a gangster was to own the world|Goodfellas",
+        "Everybody runs, Fletch|Minority Report",
+        "Fasten your seat belts, it's going to be a bumpy night!|All about Eve",
+        "Frankly, my dear, I don't give a damn!|Gone with the Wind",
+        "Gentlemen, you can't fight in here! This is the War Room!|Dr Strangelove",
+        "Get busy living, or get busy dying|The Shawshank Redemption",
+        "Go ahead, make my day|Sudden Impact",
+        "I am Groot|Guardians of the Galaxy",
+        "I am Spartacus|Spartacus",
+        "I have nipples, Greg, could you milk me?|Meet the Parents",
+        "I see dead people|The Sixth Sense",
+        "I want to play a game...|Saw",
+        "I'm also just a girl standing in front of a boy asking him to love her|Notting Hill",
+        "I'm gonna make him an offer he can't refuse|The Godfather",
+        "Life is a box of chocolates, Forrest. You never know what you're gonna get|Forrest Gump",
+        "Oh my dear God - are you one of those single tear people?|Whiplash",
+        "Now you're looking for the secret, but you won't find it, because of course you're not really looking. You don't really want to know. You want to be fooled|The Prestige",
+        "Say hello to my little friend|Scarface",
+        "The cold never bothered me anyway|Frozen",
+        "What did you expect, an exploding pen?|Skyfall",
+        "Why so serious?|The Dark Knight",
+        "You talkin' to me?|Taxi Driver",
+        "You're only supposed to blow the bloody doors off!|The Italian Job"
+    ];
+    
+    
+    function rand_quote() {
+        return Math.floor(Math.random() * quotes.length );
+    };
+    
+    
+    function generate() {
+        var ele = document.getElementById("hidden_div");
+        ele.style.display = "block";
+        
+        var the_quote = quotes[rand_quote()];
+        the_quote = the_quote.split('|');
+        document.getElementById("text_quote").innerHTML = the_quote[0];
+        document.getElementById("text_author").innerHTML = "- " + the_quote[1];
+        var alltext = ""
+        if (the_quote[0].length > 100){
+            alltext = the_quote[0].substring(0, 80) + " - " + the_quote[1];
+        }
+        else{
+            alltext = the_quote[0] + " - " + the_quote[1];
+        }
+        
+        var link = document.getElementById("twit");
+        link.setAttribute("href", "http://twitter.com/?status="+alltext);
+    }
+    
+</script>
+
+<div class="jumbotron">
+    <div class="section-beautify">
+        <h1 class="text-center main-message">Random Movie Quotes</h1>
+        
+        <hr>
+        <div class="row">
+            <ul class="list-inline">
+                <li>
+                    <button id="the_button" class="btn btn-default btn-lg" onclick="generate();"><i class="fa fa-refresh fa-spin"></i>Generate</button>
+                </li>
+                <div id="hidden_div" style="display:none;">
+                    <li>
+                        <!-- Twitter -->
+                        <!--http://twitter.com/?status= -->
+                        <a id="twit" href="http://twitter.com/home?status=" title="Share on Twitter" target="_blank" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twit it!</a>
+                    </li>
+                </div>
+                
+            </ul>
+        <div>
+            
+            <p>
+              <strong id="text_quote"></strong>  
+            </p>
+            <br>
+            <p>
+                 <em id="text_author"></em>
+            </p>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="section-beautify">
+        <h2 id="contact" class="text-center main-message">Contact me</h2>
+        <div class="row">
+            <ul class="list-inline">
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://twitter.com/jizaac" target="_blank"><i class="fa fa-twitter"></i>Twitter</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://mx.linkedin.com/in/izaaczavaleta" target="_blank"><i class="fa fa-linkedin"></i>LinkedIn</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://github.com/izaac" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://www.freecodecamp.com/izaac" target="_blank"><i class="fa fa-code"></i>Free Code Camp</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</html>

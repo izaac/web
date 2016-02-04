@@ -1,0 +1,91 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(88,107,170);
+}
+
+h1 {
+  font-family: 'Pacifico';
+  font-size: 400%;
+}
+
+.cust-link {
+  display: block;
+  width: 235px;
+  height: 250px;
+  margin: auto;
+  text-decoration: none;
+  color: rgb(215,222,140);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+}
+
+.gen-link {
+  color: rgb(5,52,70);
+}
+
+#root {
+  text-align: center;
+  width: 90%;
+  transform: translate(5%);
+}
+
+div .note {
+  width: 250px;
+  height: 400px;
+  display: inline-block;
+  padding-top: 50px;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-position: center 5px;
+}
+
+.note .avatar {
+  width: 235px;
+  height: 250px;
+  margin-bottom: auto;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.note .nick-section{
+  height: 10px;
+}
+
+.note .note-section{
+  width: 235px;
+  height: 50px;
+  margin-top: auto;
+  display: inline-block;
+  text-align: center;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  background-color: rgb(215,222,140)
+}
+
+.note .vote-section {
+  text-align: left;
+  display: inline-block;
+}
+
+.note .nickname a:link {
+  font-size: 0.8em;
+  color: rgb(215,222,140);
+}
+
+.note .nickname a:visited {
+  font-size: 0.8em;
+  color: rgb(75,143,80);
+}
+
+.note p {
+  font-size: 0.9em;
+}
+
+.fa-heart {
+  color: #c91e4c;
+}

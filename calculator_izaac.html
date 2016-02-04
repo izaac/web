@@ -1,0 +1,273 @@
+<html>
+
+<head>
+    <title>
+        Izaac's Simple Calculator
+    </title>
+    <meta charset="utf-8"/>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"  crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" crossorigin="anonymous">
+
+<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+
+<!-- Latest compiled and minified JavaScript -->
+<!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script> -->
+
+
+
+<style>
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        background-color: #EEEEEE;
+    }
+
+    .calculator {
+      width: 350px;
+      height: 400px;
+      text-align: center;
+    }
+
+    .calculator p{
+      font-family: 'Open Sans', sans-serif;
+      padding-bottom: 40px;
+    }
+
+    .col-centered {
+      float: none;
+      margin: 0 auto;
+    }
+
+    .section-beautify {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        /*background: url('desk-work-office.jpg') no-repeat center center fixed;*/
+        background-size: cover;
+    }
+
+    .main-message {
+        margin-top: 75px;
+        text-shadow: 1px 1px #000;
+    }
+    .description{
+        font-size: 20px;
+    }
+
+    .signs {
+        font-size: 40px;
+    }
+
+    *[id]:before {
+        display: block;
+        content: " ";
+        margin-top: -75px;
+        height: 75px;
+        visibility: hidden;
+    }
+
+    .jumbotron {
+        height: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .h2 {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .section {
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .calculator .row button {
+      width: 35px;
+      height: 30px;
+      padding: 20px;
+    }
+
+    .calculator .row .big {
+      width: 35px;
+      height: 60px;
+    }
+
+    .center {
+       float: none;
+       margin-left: auto;
+       margin-right: auto;
+    }
+    .btn-group{
+    position: relative;
+    margin-right: 32px;
+    margin-top: -16px;
+}
+
+
+</style>
+</head>
+<script type="text/javascript" language="javascript">
+
+"use strict";
+var arr = [];
+var tmp = '';
+function get_and_calculate() {
+  var txt = this.innerHTML;
+  var inpt = document.getElementById("result");
+  switch (true) {
+    case /\d/.test(txt) || txt === '.':
+      tmp += txt;
+      inpt.value = tmp.substring(0, 10);
+      break;
+    case txt === 'AC':
+      tmp = '';
+      arr = [];
+      inpt.value = 0;
+      break;
+    case txt === 'CE':
+      tmp = '';
+      inpt.value = 0;
+      break;
+    case txt === 'x':
+      arr.push(tmp);
+      arr.push('*');
+      tmp = '';
+      break;
+    case txt === '\xF7':
+      arr.push(tmp);
+      arr.push('/');
+      tmp = '';
+      break;
+    case txt === '=':
+      arr.push(tmp);
+      var before = Number(arr[0]);
+      for (var i = 1; i < arr.length; i++){
+        var next = Number(arr[i + 1]);
+        var operation = arr[i];
+        switch (operation) {
+          case '+':
+            before += next;
+            break;
+          case '-':
+            before -= next;
+            break;
+          case '*':
+            before *= next;
+            break;
+          case '/':
+            before /= next;
+            break;
+        }
+        i++;
+      }
+      if (before < 0) before = '-' + Math.abs(before);
+      inpt.value = before;
+      arr = [];
+      tmp = '';
+      break;
+    default:
+      arr.push(tmp);
+      arr.push(txt);
+      tmp = '';
+
+  }
+}
+
+function print_buttons() {
+  var inpt = document.getElementById("result").value = 0;
+  var anchors = document.getElementsByTagName("button");
+  for(var i = 0; i < anchors.length; i++){
+    var elem = anchors[i];
+    if (~elem.className.indexOf('calc-cl')){
+      elem.className +=  " btn-danger";
+    }
+    else if (elem.getAttribute("id") == "button-hidden") {
+      elem.style.visibility = "hidden";
+    }
+    else {
+      elem.className +=  " btn-primary";
+    }
+    elem.onclick = get_and_calculate;
+  }
+}
+
+window.onload = print_buttons;
+
+</script>
+<div class="jumbotron">
+  <div class="container">
+    <div class="calculator center">
+
+        <p>
+          Basic Calculator
+        </p>
+        <div class="col-md-8 col-centered">
+            <input id="result" class="form-control" type="text" disabled="disabled">
+        </div>
+
+        <div class="row">
+          <button class="calc-cl">AC</button>
+          <button class="calc-cl">CE</button>
+          <button>%</button>
+          <button>÷</button>
+        </div>
+        <div class="row">
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <button>x</button>
+        </div>
+        <div class="row">
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <button>-</button>
+        </div>
+        <div class="row">
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button class="big">+</button>
+        </div>
+        <div class="row btn-group">
+          <button>0</button>
+          <button>.</button>
+          <button>=</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron">
+    <div class="section-beautify">
+        <h2 id="contact" class="text-center main-message">Contact me</h2>
+        <div class="row">
+            <ul class="list-inline">
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://twitter.com/jizaac" target="_blank"><i class="fa fa-twitter"></i>Twitter</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://mx.linkedin.com/in/izaaczavaleta" target="_blank"><i class="fa fa-linkedin"></i>LinkedIn</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://github.com/izaac" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+                </li>
+                <li>
+                    <a class="btn btn-default btn-lg" href="https://www.freecodecamp.com/izaac" target="_blank"><i class="fa fa-code"></i>Free Code Camp</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</html>

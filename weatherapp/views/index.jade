@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  #mainsection.centered
+    h1= title
+    p #{title} App
+    #title.main
+    #subtitle.mainsub
+    #container.data
+      script(type='text/javascript' src='/js/test_geolocator.js')
+      div.location
+        span#cityname
+      div.conditions
+        span#conditionname
+      div.temp
+        span#tempname
+    div.button
+      button#convert(class='btn' onclick='update()').
+        Convert
